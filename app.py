@@ -14,7 +14,7 @@ model = load_model()
 # Load CSV and create embeddings for the entire data set
 @st.cache_data
 def load_data_and_embeddings():
-    data = pd.read_csv(r"https://github.com/TRHarsha/AI-powered-legal-search-engine/blob/main/leg_dataset.csv")
+    data = pd.read_csv("leg_dataset.csv")
     data['content'] = data.apply(lambda row: ' '.join(row.dropna().astype(str)), axis=1)
     embeddings = model.encode(data['content'].tolist(), show_progress_bar=True)
     return data, embeddings
