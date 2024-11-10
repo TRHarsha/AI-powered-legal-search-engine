@@ -29,7 +29,7 @@ def search_with_embeddings(query, embeddings, data, top_k=5):
     return data.iloc[top_k_indices], scores[top_k_indices]
 
 # Streamlit Interface
-st.title("AI-Powered CSV Search Engine")
+st.title("AI-Powered Legal Search Engine")
 
 query = st.text_input("Enter your query:")
 top_k = st.slider("Number of results:", 1, 20, 5)
