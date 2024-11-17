@@ -46,12 +46,13 @@ def calculate_map(top_k_indices, ground_truth_indices, k):
         ap = 0
         relevant_count = 0
         for i, doc_idx in enumerate(query_indices):
-            if doc_idx in ground_truth_indices:
+            # Use np.isin to check if doc_idx is in ground_truth_indices
+            if np.isin(doc_idx, ground_truth_indices):
                 relevant_count += 1
                 ap += relevant_count / (i + 1)
         if relevant_count > 0:
             aps.append(ap / relevant_count)
-    map_score = np.mean(aps)
+    map_score = np.mean(aps) if aps else 0  # Avoid division by zero if no relevant documents found
     return map_score
 
 # Streamlit Interface
